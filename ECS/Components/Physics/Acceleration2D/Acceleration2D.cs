@@ -1,9 +1,9 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using Microsoft.Xna.Framework;
 
 namespace AtlasMG.ECS.Components.Physics
 {
-	public class Acceleration2D : AtlasComponent, IAcceleration2D
+	public class Acceleration2D : AtlasComponent<IAcceleration2D>, IAcceleration2D
 	{
 		private Vector2 vector = new Vector2(0, 0);
 		private float rotation = 0;

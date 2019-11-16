@@ -1,11 +1,11 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace AtlasMG.ECS.Components.Manager
 {
-	public class GameManager : AtlasComponent, IGameManager
+	public class GameManager : AtlasComponent<IGameManager>, IGameManager
 	{
 		public Game Game { get; private set; }
 		public Color BackgroundColor { get; set; } = Color.Black;

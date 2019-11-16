@@ -1,5 +1,4 @@
-﻿using Atlas.Core.Objects;
-using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Engine;
 using Atlas.ECS.Families;
 using Atlas.ECS.Systems;
 using AtlasMG.ECS.Components.Transform;
@@ -17,7 +16,7 @@ namespace AtlasMG.ECS.Systems.Transform
 
 		public Camera2DSystem()
 		{
-			TimeStep = TimeStep.Variable;
+
 		}
 
 		protected override void AddingEngine(IEngine engine)

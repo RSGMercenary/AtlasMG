@@ -1,4 +1,5 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Engine;
+using Atlas.ECS.Components.SystemManager;
 using Atlas.ECS.Entities;
 using AtlasMG.ECS.Components.Manager;
 using AtlasMG.ECS.Components.Render;

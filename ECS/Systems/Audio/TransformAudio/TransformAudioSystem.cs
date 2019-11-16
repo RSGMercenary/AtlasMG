@@ -1,5 +1,4 @@
-﻿using Atlas.Core.Objects;
-using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Engine;
 using Atlas.ECS.Families;
 using Atlas.ECS.Systems;
 using AtlasMG.ECS.Families.Audio;
@@ -13,7 +12,7 @@ namespace AtlasMG.ECS.Systems.Audio
 
 		public TransformAudioSystem()
 		{
-			TimeStep = TimeStep.Variable;
+
 		}
 
 		protected override void AddingEngine(IEngine engine)

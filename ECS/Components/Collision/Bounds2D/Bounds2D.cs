@@ -1,10 +1,10 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using AtlasMG.ECS.Components.Transform;
 using Microsoft.Xna.Framework;
 
 namespace AtlasMG.ECS.Components.Collision
 {
-	public class Bounds2D : AtlasComponent, IBounds2D
+	public class Bounds2D : AtlasComponent<IBounds2D>, IBounds2D
 	{
 		//This is calculated from the Bounds
 		private ITransform2D transform;

@@ -1,4 +1,4 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

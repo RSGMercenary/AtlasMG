@@ -1,4 +1,4 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 
 namespace AtlasMG.ECS.Components.Collision
 {

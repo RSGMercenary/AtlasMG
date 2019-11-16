@@ -1,8 +1,8 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 
 namespace AtlasMG.ECS.Components.Transform
 {
-	public class Rotate2D : AtlasComponent, IRotate2D
+	public class Rotate2D : AtlasComponent<IRotate2D>, IRotate2D
 	{
 		private float torque = 0;
 

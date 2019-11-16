@@ -1,9 +1,9 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using Microsoft.Xna.Framework;
 
 namespace AtlasMG.ECS.Components.Render
 {
-	public abstract class Render2D : AtlasComponent, IRender2D
+	public abstract class Render2D : AtlasComponent<IRender2D>, IRender2D
 	{
 		private int visible = 1;
 

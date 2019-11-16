@@ -1,10 +1,10 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace AtlasMG.ECS.Components.Audio
 {
-	public class Audio : AtlasComponent, IAudio
+	public class Audio : AtlasComponent<IAudio>, IAudio
 	{
 		public Audio()
 		{

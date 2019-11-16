@@ -1,4 +1,4 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 using System.Collections.Generic;
 
 namespace AtlasMG.ECS.Components.Audio

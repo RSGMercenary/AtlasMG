@@ -1,5 +1,4 @@
-﻿using Atlas.Core.Objects;
-using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Engine;
 using Atlas.ECS.Entities;
 using Atlas.ECS.Families;
 using Atlas.ECS.Systems;
@@ -19,7 +18,7 @@ namespace AtlasMG.ECS.Systems.Render
 
 		public Render2DSystem()
 		{
-			TimeStep = TimeStep.Variable;
+
 		}
 
 		protected override void AddingEngine(IEngine engine)

@@ -1,8 +1,8 @@
-﻿using Atlas.ECS.Components;
+﻿using Atlas.ECS.Components.Component;
 
 namespace AtlasMG.ECS.Components.Transform
 {
-	public class Cursor2D : AtlasComponent, ICursor2D
+	public class Cursor2D : AtlasComponent<ICursor2D>, ICursor2D
 	{
 		private bool followPosition = true;
 		private bool followRotation = true;

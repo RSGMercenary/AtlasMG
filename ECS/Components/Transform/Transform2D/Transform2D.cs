@@ -1,26 +1,20 @@
-﻿using Atlas.Core.Messages;
-using Atlas.Core.Utilites;
-using Atlas.ECS.Components;
-using Atlas.ECS.Entities;
-using Atlas.ECS.Entities.Messages;
+﻿using Atlas.Core.Utilites;
+using Atlas.ECS.Components.Component;
 using Microsoft.Xna.Framework;
 
 namespace AtlasMG.ECS.Components.Transform
 {
-	public class Transform2D : AtlasComponent, ITransform2D
+	public class Transform2D : AtlasComponent<ITransform2D>, ITransform2D
 	{
 		#region Fields
 
-		private ITransform2D parent;
-		private Matrix global;
 		private Matrix local;
 
 		private Vector2 position;
 		private Vector2 scale;
 		private float rotation;
 
-		private bool globalDirty = true;
-		private bool localDirty = false;
+		private bool dirty = false;
 
 		#endregion
 
@@ -37,85 +31,24 @@ namespace AtlasMG.ECS.Components.Transform
 
 		#endregion
 
-		#region Add / Remove Manager
-
-		protected override void AddingManager(IEntity entity, int index)
-		{
-			base.AddingManager(entity, index);
-			entity.AddListener<IParentMessage>(ParentChanged);
-			entity.AddListener<IComponentAddMessage>(ComponentAdded);
-			entity.AddListener<IComponentRemoveMessage>(ComponentRemoved);
-			Parent = entity.GetAncestorComponent<ITransform2D>();
-		}
-
-		protected override void RemovingManager(IEntity entity, int index)
-		{
-			entity.RemoveListener<IParentMessage>(ParentChanged);
-			entity.RemoveListener<IComponentAddMessage>(ComponentAdded);
-			entity.RemoveListener<IComponentRemoveMessage>(ComponentRemoved);
-			Parent = null;
-			base.RemovingManager(entity, index);
-		}
-
-		#endregion
-
-		#region Messages
-
-		private void ParentChanged(IParentMessage message)
-		{
-			SetParent(message);
-		}
-
-		private void ComponentAdded(IComponentAddMessage message)
-		{
-			if(message.Key != typeof(ITransform2D))
-				return;
-			SetParent(message);
-		}
-
-		private void ComponentRemoved(IComponentRemoveMessage message)
-		{
-			if(message.Key != typeof(ITransform2D))
-				return;
-			SetParent(message);
-		}
-
-		private void SetParent(IMessage<IEntity> message)
-		{
-			if(Manager.HasAncestor(message.Messenger))
-				Parent = Manager.GetAncestorComponent<ITransform2D>();
-		}
-
-		#endregion
-
 		protected void Dirty()
 		{
-			localDirty = true;
+			dirty = true;
 		}
 
 		public ITransform2D Parent
 		{
-			get { return parent; }
-			private set
-			{
-				if(parent == value)
-					return;
-				var previous = parent;
-				parent = value;
-				globalDirty = true;
-			}
+			get { return Manager?.GetAncestorComponent<ITransform2D>(); }
 		}
 
 		public Matrix Global
 		{
 			get
 			{
-				if(localDirty || globalDirty)
-				{
-					global = Local;
-					if(parent != null)
-						global *= parent.Global;
-				}
+				var parent = Parent;
+				var global = Local;
+				if(parent != null)
+					global *= parent.Global;
 				return global;
 			}
 		}
@@ -124,9 +57,11 @@ namespace AtlasMG.ECS.Components.Transform
 		{
 			get
 			{
-				if(localDirty)
+				if(dirty)
+				{
 					local = CreateLocalMatrix();
-				localDirty = false;
+					dirty = false;
+				}
 				return local;
 			}
 		}
